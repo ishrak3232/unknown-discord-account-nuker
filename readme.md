@@ -1,5 +1,5 @@
 <h1 align="center">
-  Hazard Token Grabber V3 
+  Unknown account nuker V1
 </h1>
 
 <p align="center"> 
