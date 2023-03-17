@@ -28,10 +28,11 @@
 ## <a id="content"></a> List 📃
 
 - [🛡 Features](#features)
-- [🔗 Discord](https://discord.gg/VC3N3AXfgF)
 - [🛠 Setting up](#setup)
 - [💳 Credit](#credit)
 - [🔍 previews](#preview)
+
+-- [**contact us for help**](https://discord.gg/legittools)
 
 ## <a id="features"></a>. Features
 
