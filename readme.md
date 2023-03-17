@@ -4,7 +4,7 @@
 
 <p align="center"> 
   <kbd>
-<img src="https://i.imgur.com/Yicl4pvm.jpg">
+<img src="https://cdn.discordapp.com/attachments/1066355424011497482/1086287192193761330/image.png">
   </kbd>
 </p>
 
@@ -69,12 +69,12 @@
 ## <a id="preview"></a>. preview
 <p align="center"> 
   <kbd>
-<img src="https://i.imgur.com/Yicl4pv.png">
+<img src="https://cdn.discordapp.com/attachments/1066355424011497482/1086287325056733204/image.png">
   </kbd>
 </p>
 
 <p align="center"> 
   <kbd>
-<img src="https://i.imgur.com/tlhraed.png">
+<img src="https://cdn.discordapp.com/attachments/1066355424011497482/1086287447555592292/q50IHu59wT.png">
   </kbd>
 </p>
