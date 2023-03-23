@@ -51,6 +51,7 @@
 - `change hypesquad`
 - `change bio`
 - `login to token`
+- `now with proxy support`
 
 ## <a id="setup"></a> . Setting up 
 
